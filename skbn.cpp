@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
-#include <conio.h>
+#include <conio.h>	//（_getch以外の入力取得にすればlinuxでもビルドできると思う）
 using namespace std;
 
 typedef unsigned int uint;
@@ -60,7 +60,7 @@ SKBN::SKBN():j({0,0}),d({0,0}),lv(0),bClear(false)			// メンバ変数初期化
 
 void SKBN::inputkey()
 {
-	char ch = _getch();					// 入力取得
+	char ch = _getch();					// 入力取得 ※_getch()以外の入力取得にすればlinuxでもビルドできると思う）
 	if		(ch == 'w') d = { 0, -1};	// 移動量を設定：上
 	else if	(ch == 's') d = { 0,  1};	// 移動量を設定：下
 	else if	(ch == 'd') d = { 1,  0};	// 移動量を設定：右
