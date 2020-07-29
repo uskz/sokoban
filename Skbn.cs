@@ -17,12 +17,12 @@ namespace SokobanCS
 
     class Sokoban
     {
-        private XY j = new XY(0, 0);  // プレイヤー座標情報
-        private XY d = new XY(0, 0);  // 移動方向情報
-        private int lv = 0;             // 現在のステージ数
-        private bool bClear = false;    // ステージクリアフラグ
-        private List<char> Map = new List<char>();              // 現在のステージデータ
-        private readonly List<List<char>> Dat = new List<List<char>>();  // 全ステージデータ
+        XY j = new XY(0, 0);                                    // プレイヤー座標情報
+        XY d = new XY(0, 0);                                    // 移動方向情報
+        int lv = 0;                                             // 現在のステージ数
+        bool bClear = false;                                    // ステージクリアフラグ
+        List<char> Map = new List<char>();                      // 現在のステージデータ
+        readonly List<List<char>> Dat = new List<List<char>>(); // 全ステージデータ
         readonly Dictionary<string, char> M = new Dictionary<string, char>()
         {
             {"NONE",    ' '},	// 何もない
@@ -108,10 +108,10 @@ namespace SokobanCS
             if (bClear) Console.WriteLine("Stage Clear!");	// ステージクリアフラグがtrueなら、ステージクリアした旨を表示
         }
 
-        private void InitSelfPos()      // プレイヤー位置初期化
+        void InitSelfPos()      // プレイヤー位置初期化
         {
             (j.x, j.y) = (0, 0);
-            Map = Dat[lv];  // 全ステージデータから現在のステージのデータを取得
+            Map = Dat[lv];      // 全ステージデータから現在のステージのデータを取得
             foreach (char m in Map)
             {
                 if (m == M["SELF"] || m == M["SELF_ON"]) break;     // ステージデータからプレイヤー位置を探す
@@ -120,7 +120,7 @@ namespace SokobanCS
             }
         }
 
-        private int Pos(int x, int y)  // 指定xy座標に相当するインデックスを返す
+        int Pos(int x, int y)  // 指定xy座標に相当するインデックスを返す
         {
             int i = 0;
             uint ycnt = 0;
