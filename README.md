@@ -8,7 +8,8 @@
 特別なライブラリとかの追加は必要ない（つもり）
 
 # Installation
-skbn.cpp：VisualStudio2019でビルド。g++とかでも動くようにするにはソース内コメント参照
+skbn.cpp：C++版。VisualStudio2019でビルド。g++とかでも動くようにするにはソース内コメント参照
+Skbn.cpp：C#版。VisualStudio2019でビルド。
 
 # Usage
 基本的にどの言語も
