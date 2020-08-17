@@ -1,24 +1,13 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
 namespace SokobanCS
 {
-    struct XY
-    {
-        public int x;
-        public int y;
-        public XY(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
     class Sokoban
     {
-        XY j = new XY(0, 0);                                    // プレイヤー座標情報
-        XY d = new XY(0, 0);                                    // 移動方向情報
+        (int x, int y) j = (0, 0);                              // プレイヤー座標情報
+        (int x, int y) d = (0, 0);                              // 移動方向情報
         int lv = 0;                                             // 現在のステージ数
         bool bClear = false;                                    // ステージクリアフラグ
         List<char> Map = new List<char>();                      // 現在のステージデータ
@@ -44,7 +33,7 @@ namespace SokobanCS
                 foreach (var t in r.ReadToEnd())
                 {
                     if (t == M["END"]) Dat.Add(new List<char>());   // ステージを最後まで読んだら次のステージ枠確保
-                    else Dat[^1].Add(t);                            // ステージデータ格納
+                    else Dat[Dat.Count-1].Add(t);                   // ステージデータ格納
                 }
             }
             InitSelfPos();                                          // プレイヤー位置初期化
@@ -53,7 +42,7 @@ namespace SokobanCS
 
         public bool IsAllClear()
         {
-            if (bClear && (++lv != Dat.Count))  // ステージクリアかつ、全てのステージをクリアしていなければ中へ
+            if (bClear && (++lv != Dat.Count))  // 全ステージをクリアしていないか
             {
                 bClear = false;                 // ステージクリアフラグをfalse
                 InitSelfPos();                  // プレイヤー位置初期化
@@ -64,13 +53,13 @@ namespace SokobanCS
 
         public void Inputkey()
         {
-            switch(Console.ReadKey(true).Key)   // 入力取得
+            switch (Console.ReadKey(true).Key)   // 入力取得
             {
-                case ConsoleKey.W: (d.x, d.y) = ( 0,-1); break; // 移動量を設定：上
-                case ConsoleKey.S: (d.x, d.y) = ( 0, 1); break; // 移動量を設定：下
-                case ConsoleKey.D: (d.x, d.y) = ( 1, 0); break; // 移動量を設定：右
-                case ConsoleKey.A: (d.x, d.y) = (-1, 0); break; // 移動量を設定：左
-                default: Environment.Exit(0); break;            // それ以外の入力はとりあえずプログラム終了
+                case ConsoleKey.W: d = (0, -1); break;  // 移動量を設定：上
+                case ConsoleKey.S: d = (0, 1); break;   // 移動量を設定：下
+                case ConsoleKey.D: d = (1, 0); break;   // 移動量を設定：右
+                case ConsoleKey.A: d = (-1, 0); break;  // 移動量を設定：左
+                default: Environment.Exit(0); break;    // それ以外の入力はとりあえずプログラム終了
             }
         }
 
@@ -97,7 +86,7 @@ namespace SokobanCS
 
             if (Map[t0] != M["SELF"] && Map[t0] != M["SELF_ON"])    // プレイヤー位置だった場所にプレイヤーがいない(移動した)場合
             {
-                (j.x, j.y) = (j.x + d.x, j.y + d.y);                // プレイヤー位置更新
+                j = (j.x + d.x, j.y + d.y);                         // プレイヤー位置更新
                 bClear = (0 > Map.IndexOf(M["NI"]));                // ステージ上に1つも「荷物」が無ければ、ステージクリアフラグをtrue
             }
         }
@@ -110,13 +99,13 @@ namespace SokobanCS
 
         void InitSelfPos()      // プレイヤー位置初期化
         {
-            (j.x, j.y) = (0, 0);
+            j = (0, 0);
             Map = Dat[lv];      // 全ステージデータから現在のステージのデータを取得
             foreach (char m in Map)
             {
-                if (m == M["SELF"] || m == M["SELF_ON"]) break;     // ステージデータからプレイヤー位置を探す
-                else if (m == M["RTN"]) (j.x, j.y) = (0, j.y + 1);	// 探している間xy座標を数える
-                else j.x++;                                         // 探している間xy座標を数える
+                if (m == M["SELF"] || m == M["SELF_ON"]) break; // ステージデータからプレイヤー位置を探す
+                else if (m == M["RTN"]) j = (0, j.y + 1);       // 探している間xy座標を数える
+                else j.x++;                                     // 探している間xy座標を数える
             }
         }
 
