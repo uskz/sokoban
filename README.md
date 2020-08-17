@@ -2,14 +2,14 @@
 自作の倉庫番ゲームのソースを置いておきます
 
 # Features
-短く簡潔に書く
+短く簡潔にソースを書く
 
 # Requirement
 特別なライブラリとかの追加は必要ない（つもり）
 
 # Installation
-skbn.cpp：C++版。VisualStudio2019でビルド。g++とかでも動くようにするにはソース内コメント参照  
-Skbn.cs：C#版。VisualStudio2019でビルド。
+skbn.cpp：C++版。linuxとかでも動くようにするにはソース内コメント参照  
+Skbn.cs：C#版。
 
 # Usage
 基本的にどの言語も  
