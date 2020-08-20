@@ -27,7 +27,7 @@ namespace SokobanCS
 
         public Sokoban()
         {
-            Dat.Add(new List<char>());                              // メンバ変数初期化
+            Dat.Add(new List<char>());                              // 最初のステージ枠確保
             using (var r = new StreamReader(@".\dat_skbn.txt"))     // ステージデータファイル読み込み
             {
                 foreach (var t in r.ReadToEnd())
