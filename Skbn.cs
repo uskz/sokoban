@@ -48,7 +48,7 @@ namespace SokobanCS
                 InitSelfPos();                  // プレイヤー位置初期化
                 Draw();                         // 画面描画
             }
-            return bClear;						// 全ステージをクリアしていればtrueを返す
+            return bClear;						// 全クリアならtrue、それ以外ならfalse
         }
 
         public void Inputkey()
