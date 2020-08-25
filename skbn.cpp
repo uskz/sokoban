@@ -122,7 +122,7 @@ bool SKBN::isAllClear()
 		initSelfPos();					// プレイヤー位置初期化
 		draw();							// 画面描画
 	}
-	return bClear;						// 全ステージをクリアしていればtrueを返す
+	return bClear;						// 全クリアならtrue、それ以外ならfalse
 }
 
 uint SKBN::pos(int x, int y)	// 指定xy座標に該当するインデックスを一次元データから算出
