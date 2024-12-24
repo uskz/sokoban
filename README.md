@@ -6,12 +6,12 @@
 
 # Installation
 skbn.cpp：C++版。linuxとかでも動くようにするにはソース内コメント参照  
-Skbn.cs：C#版。
+Skbn.cs：C#版。  
 skbn.gd：GDScript版。Godot4.xで動作します。適当なメインシーンにアタッチしてください。
 
 # Usage
-C++、C#版はWASDで上下左右移動
-C++版は、WASDを打ち込んだ後にEnterを押す必要あり。
+C++、C#版はWASDで上下左右移動  
+C++版は、WASDを打ち込んだ後にEnterを押す必要あり。  
 GDSCript版はカーソルキーで上下左右移動
 
 # Author
